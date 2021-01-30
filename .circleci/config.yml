@@ -1,7 +1,17 @@
-version: 2.1
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '13.14'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test:lib
 orbs:
   node: circleci/node@3.0.0
+version: 2.1
 workflows:
-  node-tests:
+  test_my_app:
     jobs:
-      - node/test
+      - test
